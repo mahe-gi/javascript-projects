@@ -1,0 +1,40 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+#main {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url("https://static.vecteezy.com/system/resources/previews/000/692/184/large_2x/pastel-hearts-hanging-with-pink-bokeh-vector.jpg");
+  background-position: center;
+  background-size: contain;
+}
+#container {
+  height: 80%;
+  width: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+}
+#container > img {
+  height: 80%;
+  width: 90%;
+  object-fit: cover;
+  object-position: bottom;
+}
+#container button {
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+}
