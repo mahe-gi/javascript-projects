@@ -4,17 +4,42 @@ const imageUrl = document.getElementById("imageUrl");
 const movieName = document.getElementById("movieName");
 const year = document.getElementById("year");
 const addMovie = document.getElementById("addMovie");
+const errorBox = document.getElementById("error");
 
 let movieList = [];
 Movieform.addEventListener("submit", (e) => {
   e.preventDefault();
-  let Moiveobj = {
+  errorBox.textContent = "";
+
+  const imagePattern = /\.(jpeg|jpg|png|gif|webp)(\?.*)?$/i;
+  const currentYear = new Date().getFullYear();
+
+  if (!imagePattern.test(imageUrl.value.trim())) {
+    errorBox.textContent =
+      " This might not be a valid image URL, please wait ..";
+    errorBox.style.fontSize = "13px";
+  }
+
+  if (movieName.value.trim().length < 2) {
+    errorBox.textContent = " Movie name should be at least 2 characters long.";
+    return;
+  }
+
+  if (isNaN(year.value) || +year.value < 2021 || +year.value > currentYear) {
+    errorBox.textContent = ` Year must be between 2021 and ${currentYear}.`;
+
+    return;
+  }
+
+  let movieObj = {
     imageUrl: imageUrl.value,
     movieName: movieName.value,
     year: year.value,
   };
-  movieList.push(Moiveobj);
+
+  movieList.push(movieObj);
   displayMovies(movieList);
+  // Movieform.reset();
 });
 
 const root = document.getElementById("root");
@@ -44,7 +69,6 @@ function displayMovies(movieList) {
   });
 }
 
-//
 document.getElementById("selectYear").addEventListener("change", function () {
   const cat = document.getElementById("selectYear");
   let movieLists = movieList.filter((ele, ind) => {
