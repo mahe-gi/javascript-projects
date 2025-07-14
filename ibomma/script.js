@@ -43,3 +43,14 @@ function displayMovies(movieList) {
     text.append(p, p1);
   });
 }
+
+//
+document.getElementById("selectYear").addEventListener("change", function () {
+  const cat = document.getElementById("selectYear");
+  let movieLists = movieList.filter((ele, ind) => {
+    console.log(ele);
+    return ele.year == cat.value;
+  });
+  console.log(movieLists);
+  displayMovies(movieLists);
+});
